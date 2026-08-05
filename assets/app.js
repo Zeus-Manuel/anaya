@@ -322,9 +322,12 @@ function update() {
   const list = $("#sumList");
   const rows = [];
   for (const g of ["principales", "bebida", "complemento", "postre"]) {
-    o[g].forEach((v) =>
+    // la categoría se rotula solo en el primero del grupo
+    o[g].forEach((v, i) =>
       rows.push(
-        `<li><div><span class="summary__cat">${LABELS[g].titulo}</span>${v}</div></li>`
+        `<li><div>${
+          i === 0 ? `<span class="summary__cat">${LABELS[g].titulo}</span>` : ""
+        }${v}</div></li>`
       )
     );
   }

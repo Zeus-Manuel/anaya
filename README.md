@@ -1,7 +1,12 @@
 # ANAYA — sitio web
 
+**En línea: https://zeus-manuel.github.io/anaya/**
+
 Sitio de una sola página para **ANAYA · Brunch box & más** (Manta, Ecuador).
 HTML, CSS y JavaScript puros. Sin build, sin dependencias, sin backend.
+
+Publicado con GitHub Pages desde la rama `main`: cada `git push` actualiza el
+sitio en un par de minutos.
 
 ```
 anaya-web/
