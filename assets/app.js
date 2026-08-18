@@ -24,7 +24,7 @@ const MENU = {
     "Sánduche de pollo",
     "Sánduche de embutidos",
     "Avena Bircher",
-    "Pancakes de banana con avena",
+    "Pancakes de guineo con avena",
     "Waffles con miel y fruta",
   ],
   bebida: [
@@ -37,7 +37,7 @@ const MENU = {
   ],
   complemento: ["Frutas frescas", "Frutos secos", "Queso"],
   postre: [
-    "Torta de banana fit",
+    "Torta de guineo fit",
     "Torta de zanahoria",
     "Tres leches",
     "Queso de leche",
@@ -62,7 +62,7 @@ const PRESETS = [
   {
     nombre: "Dulce y suave",
     detalle: "Pancakes, waffles y chocolate caliente",
-    principales: ["Pancakes de banana con avena", "Waffles con miel y fruta"],
+    principales: ["Pancakes de guineo con avena", "Waffles con miel y fruta"],
     bebida: "Chocolate caliente artesanal",
     complemento: "Frutas frescas",
     postre: "Tres leches",
@@ -89,7 +89,7 @@ const PRESETS = [
     principales: ["Avena Bircher"],
     bebida: "Jugo de zanahoria y naranja",
     complemento: "Frutos secos",
-    postre: "Torta de banana fit",
+    postre: "Torta de guineo fit",
   },
 ];
 
@@ -98,8 +98,8 @@ const OCASIONES = [
   ["Cumpleaños", "🎂", "Es un cumpleaños"],
   ["Un gracias", "🤍", "Quiero agradecerle a alguien"],
   ["Aniversario", "🥂", "Es un aniversario"],
-  ["Oficina o equipo", "💼", "Es para mi oficina / equipo"],
-  ["Mamá o papá", "🌷", "Es para mi mamá / papá"],
+  ["Oficina o equipo", "💼", "Es para mi oficina o mi equipo"],
+  ["Mamá o papá", "🌷", "Es para mi mamá o mi papá"],
   ["Recién nacido", "🍼", "Es para una familia con un recién nacido"],
   ["Porque sí", "✨", "Es solo porque quiero consentir a alguien"],
 ];
@@ -494,7 +494,9 @@ function updateJuices() {
   $("#juiceSend").disabled = !ok;
   $("#juiceLabel").textContent = ok
     ? "Pedir mi semana"
-    : `Te faltan ${5 - total} ${5 - total === 1 ? "botella" : "botellas"}`;
+    : 5 - total === 1
+      ? "Te falta 1 botella"
+      : `Te faltan ${5 - total} botellas`;
 }
 
 function wireJuices() {
