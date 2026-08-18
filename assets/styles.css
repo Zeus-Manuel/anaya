@@ -781,3 +781,27 @@ p{ margin:0 0 .7rem; text-wrap:pretty; }
   body.has-sticky .stickybar{ display:flex; }
   body.has-sticky{ padding-bottom:74px; }
 }
+
+/* ── ¿Cuál es tu caso? — enlaces a las páginas por perfil ── */
+.casos{ background:var(--papel); padding-block:clamp(4rem,8vw,6rem); }
+.casos__grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; }
+.casos__col h3{
+  font-size:var(--fs-micro); font-weight:600; letter-spacing:.12em; line-height:1.35;
+  text-transform:uppercase; color:var(--terracota);
+  padding-bottom:.7rem; margin-bottom:.9rem; border-bottom:1px solid var(--linea);
+}
+.casos__list{ list-style:none; margin:0; padding:0; display:grid; gap:.6rem; }
+.casos__list a{
+  display:block; padding:1rem 1.1rem;
+  background:var(--crema); border:1px solid transparent; border-radius:14px;
+  text-decoration:none;
+  transition:.22s var(--ease);
+}
+.casos__list a:hover{ background:var(--arena); transform:translateX(3px); }
+.casos__list strong{
+  display:block; font-size:var(--fs-btn); font-weight:600; line-height:1.4;
+  color:var(--tinta); margin-bottom:.2rem;
+}
+.casos__list span{ display:block; font-size:var(--fs-note); font-weight:400; line-height:1.45; color:var(--tinta-2); }
+
+@media (max-width:1000px){ .casos__grid{ grid-template-columns:1fr; gap:1.6rem; } }

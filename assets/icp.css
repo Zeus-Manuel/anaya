@@ -1,0 +1,107 @@
+/* ═══════════════════════════════════════════════════════════
+   ANAYA — páginas de aterrizaje por perfil (/para/<slug>/)
+   Hereda todo el sistema de styles.css. Aquí solo lo propio.
+   ═══════════════════════════════════════════════════════════ */
+
+.icp .nav__cta{ display:inline-flex; }
+
+/* ── Hero ────────────────────────────────────────────────── */
+.icp-hero{
+  background:
+    radial-gradient(85% 70% at 75% 6%, rgba(255,255,255,.7) 0%, transparent 60%),
+    linear-gradient(168deg, var(--amarillo) 0%, var(--crema) 100%);
+  padding-block:clamp(3rem,7vw,5.5rem);
+}
+.icp-crumb{
+  font-size:var(--fs-note); font-weight:600; letter-spacing:.06em;
+  color:var(--tinta-2); margin-bottom:1rem;
+}
+.icp-crumb a{ color:var(--terracota); text-decoration:none; }
+.icp-crumb a:hover{ text-decoration:underline; text-underline-offset:3px; }
+.icp-hero h1{ max-width:18ch; margin-bottom:1.3rem; }
+.icp-hero .lead{ max-width:56ch; margin-bottom:2rem; }
+.icp-hero__cta{ display:flex; flex-wrap:wrap; gap:.8rem; }
+
+/* ── Ancho de lectura ────────────────────────────────────── */
+.icp-narrow{ max-width:760px; }
+
+/* ── Dolor ───────────────────────────────────────────────── */
+.icp-dolor{ background:var(--papel); padding-block:clamp(3.5rem,7vw,5.5rem); }
+.icp-dolor h2{ max-width:20ch; margin-bottom:1.4rem; }
+.icp-dolor p{
+  font-size:var(--fs-lead); font-weight:400; line-height:1.62;
+  color:var(--tinta-2); max-width:62ch; margin-bottom:1rem;
+}
+.icp-dolor p:last-child{ margin-bottom:0; }
+
+/* ── Mecanismo (banda oscura) ────────────────────────────── */
+.icp-mec{ background:var(--cafe); color:var(--crema); padding-block:clamp(3.5rem,7vw,5.5rem); }
+.mec__grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:1.3rem; }
+.mec__item{
+  padding:1.8rem 1.9rem;
+  background:var(--cafe-elev);
+  border-radius:var(--r-lg);
+}
+.mec__item h3{ color:var(--mostaza); margin-bottom:.5rem; }
+.mec__item p{
+  margin:0; font-size:var(--fs-body); font-weight:500; line-height:1.6;
+  letter-spacing:.005em; color:var(--crema);
+}
+
+/* ── Oferta ──────────────────────────────────────────────── */
+.icp-oferta{ background:var(--crema); padding-block:clamp(3.5rem,7vw,5.5rem); }
+.icp-oferta__in{ display:grid; place-items:center; }
+.icp-oferta__card{
+  width:min(620px,100%);
+  padding:2.6rem 2.4rem 2.2rem;
+  background:var(--papel);
+  border-radius:var(--r-lg);
+  box-shadow:var(--sh-lg);
+}
+.icp-oferta__card h2{ margin-bottom:.4rem; }
+.icp-tagline{
+  font-style:italic; font-size:var(--fs-lead); font-weight:400;
+  color:var(--tinta-2); margin-bottom:1.4rem;
+}
+.icp-incluye{ list-style:none; margin:0 0 1.4rem; padding:0; display:grid; gap:.1rem; }
+.icp-incluye li{
+  display:flex; gap:.85rem; align-items:flex-start;
+  padding:.7rem 0; border-bottom:1px solid var(--linea);
+  font-size:var(--fs-body); font-weight:500; color:var(--tinta);
+}
+.icp-incluye li:last-child{ border-bottom:0; }
+.icp-incluye li::before{ content:"✓"; color:var(--terracota); font-weight:600; flex:none; }
+.icp-nota{
+  padding:1rem 1.2rem; margin-bottom:1.4rem;
+  background:var(--arena); border-radius:14px;
+  font-size:var(--fs-note); font-weight:500; line-height:1.55; color:var(--tinta);
+}
+.icp-mini{
+  margin:.9rem 0 0; text-align:center;
+  font-size:var(--fs-note); font-weight:400; color:var(--tinta-2);
+}
+
+/* ── Objeciones ──────────────────────────────────────────── */
+.icp-faq{ background:var(--papel); padding-block:clamp(3.5rem,7vw,5.5rem); }
+.icp-faq h2{ margin-bottom:1.6rem; }
+
+/* ── Otras páginas ───────────────────────────────────────── */
+.icp-otras{ background:var(--crema); padding-block:clamp(3rem,6vw,4.5rem); }
+.icp-otras h2{ font-size:clamp(1.3rem,2.6vw,1.6rem); margin-bottom:1.2rem; }
+.icp-otras__list{ list-style:none; margin:0; padding:0; display:grid; gap:.55rem; }
+.icp-otras__list a{
+  display:block; padding:.85rem 1.1rem;
+  background:var(--papel); border:1px solid var(--linea); border-radius:12px;
+  font-size:var(--fs-btn); font-weight:500; color:var(--tinta); text-decoration:none;
+  transition:.2s var(--ease);
+}
+.icp-otras__list a:hover{ border-color:var(--terracota); color:var(--terracota); transform:translateX(3px); }
+
+.icp .foot{ padding-top:0; }
+.icp .foot__bar{ border-top:0; }
+
+@media (max-width:760px){
+  .mec__grid{ grid-template-columns:1fr; }
+  .icp-oferta__card{ padding:1.8rem 1.5rem 1.6rem; }
+  .icp .fab{ display:none; }
+}
