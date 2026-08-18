@@ -2,6 +2,9 @@
 
 **En línea: https://zeus-manuel.github.io/anaya/**
 
+> WhatsApp configurado: **+593 96 318 1898**. Para cambiarlo, edita `CONFIG.whatsapp`
+> en `assets/app.js` (línea 10).
+
 Sitio de una sola página para **ANAYA · El desayuno sorpresa que sabe a casa**
 (Manta, Ecuador). HTML, CSS y JavaScript puros. Sin build, sin dependencias,
 sin backend.

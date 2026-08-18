@@ -7,7 +7,7 @@ const CONFIG = {
   // Número de WhatsApp en formato internacional, SIN "+", espacios ni guiones.
   // Ecuador = 593 + el número sin el 0 inicial.
   // Ej.: 0991234567  →  "593991234567"
-  whatsapp: "",                       // ← PENDIENTE: poner el número real
+  whatsapp: "593963181898",           // Manta, Ecuador
   instagram: "anaya.ec",
   ciudad: "Manta",
   anticipacionDias: 2,
