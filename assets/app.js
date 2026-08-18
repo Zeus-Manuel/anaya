@@ -104,12 +104,14 @@ const OCASIONES = [
   ["Porque sí", "✨", "Es solo porque quiero consentir a alguien"],
 ];
 
+/* Sin emoji en los mensajes: WhatsApp los recibe como "?" en algunos
+   equipos porque son caracteres de 4 bytes. Los acentos sí viajan bien. */
 const LABELS = {
-  principales: { titulo: "Platos principales", emoji: "🍽" },
-  bebida:      { titulo: "Bebida",             emoji: "🥤" },
-  complemento: { titulo: "Complemento",        emoji: "🧺" },
-  postre:      { titulo: "Postre",             emoji: "🍰" },
-  medida:      { titulo: "A su medida",        emoji: "⚖️" },
+  principales: { titulo: "Platos principales" },
+  bebida:      { titulo: "Bebida" },
+  complemento: { titulo: "Complemento" },
+  postre:      { titulo: "Postre" },
+  medida:      { titulo: "A su medida" },
 };
 
 const $  = (s, r = document) => r.querySelector(s);
@@ -197,7 +199,7 @@ function renderMenu() {
   if (occ) {
     occ.innerHTML = OCASIONES.map(
       ([nombre, emoji, frase]) =>
-        `<a class="occ__chip" data-wa="Hola ANAYA 👋 ${frase}. ¿Me ayudan a armar una box para esa persona?">
+        `<a class="occ__chip" data-wa="Hola ANAYA! ${frase}. ¿Me ayudan a armar una box para esa persona?">
           <span aria-hidden="true">${emoji}</span> ${nombre}
         </a>`
     ).join("");
@@ -284,30 +286,30 @@ function readOrder() {
 }
 
 function orderText(o) {
-  const L = ["Hola ANAYA 👋 Quiero mi Box Sorpresa:", ""];
+  const L = ["Hola ANAYA! Quiero mi Box Sorpresa:", ""];
 
   for (const g of ["principales", "bebida", "complemento", "postre"]) {
     if (!o[g].length) continue;
-    const { titulo, emoji } = LABELS[g];
+    const { titulo } = LABELS[g];
     if (g === "principales") {
-      L.push(`${emoji} ${titulo}:`);
+      L.push(`${titulo}:`);
       o[g].forEach((x) => L.push(`   • ${x}`));
     } else {
-      L.push(`${emoji} ${titulo}: ${o[g][0]}`);
+      L.push(`${titulo}: ${o[g][0]}`);
     }
   }
-  if (o.medida.length) L.push(`⚖️ A su medida: ${o.medida.join(", ")}`);
+  if (o.medida.length) L.push(`A su medida: ${o.medida.join(", ")}`);
 
   L.push("");
-  L.push(`📦 Cantidad: ${o.qty} ${o.qty === 1 ? "box" : "boxes"}`);
-  if (o.date) L.push(`📅 Fecha deseada: ${prettyDate(o.date)}`);
-  L.push(`🚚 Entrega: ${o.delivery}`);
+  L.push(`Cantidad: ${o.qty} ${o.qty === 1 ? "box" : "boxes"}`);
+  if (o.date) L.push(`Fecha deseada: ${prettyDate(o.date)}`);
+  L.push(`Entrega: ${o.delivery}`);
   if (o.gift) {
-    L.push(`🎁 Es sorpresa${o.giftMsg ? " — tarjeta:" : " (con tarjeta a mano)"}`);
+    L.push(`Es sorpresa${o.giftMsg ? " — tarjeta:" : " (con tarjeta a mano)"}`);
     if (o.giftMsg) L.push(`   "${o.giftMsg}"`);
   }
-  if (o.notes) L.push(`📝 Notas: ${o.notes}`);
-  if (o.name) L.push(`🙋 Mi nombre: ${o.name}`);
+  if (o.notes) L.push(`Notas: ${o.notes}`);
+  if (o.name) L.push(`Mi nombre: ${o.name}`);
 
   return L.join("\n");
 }
@@ -455,12 +457,12 @@ const juiceState = JUGOS.map(() => 0);
 const juiceTotal = () => juiceState.reduce((a, b) => a + b, 0);
 
 function juiceText() {
-  const L = ["Hola ANAYA 👋 Quiero mi Semana Viva (combo semanal de jugos):", ""];
+  const L = ["Hola ANAYA! Quiero mi Semana Viva (combo semanal de jugos):", ""];
   JUGOS.forEach((j, i) => {
-    if (juiceState[i] > 0) L.push(`🧃 ${juiceState[i]}× ${j}`);
+    if (juiceState[i] > 0) L.push(`${juiceState[i]}× ${j}`);
   });
   L.push("");
-  L.push("📦 5 botellas: 3 el lunes y 2 el jueves");
+  L.push("5 botellas: 3 el lunes y 2 el jueves");
   return L.join("\n");
 }
 
