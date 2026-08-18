@@ -104,6 +104,7 @@ def pagina_html(slug, p, otras):
       <span class="brand__word">ANAYA</span>
     </a>
     <nav class="nav__links" aria-label="Principal">
+      <a href="../">Tu caso</a>
       <a href="../../#sorpresa">Box sorpresa</a>
       <a href="../../#semana">Tu semana</a>
       <a href="../../#compartir">Para compartir</a>
@@ -188,6 +189,7 @@ def pagina_html(slug, p, otras):
 <section class="icp-otras">
   <div class="wrap icp-narrow">
     <h2>¿Buscabas otra cosa?</h2>
+    <p class="icp-otras__hub"><a href="../">Ver todos los casos</a></p>
     <ul class="icp-otras__list">
 {otras_li}
     </ul>
