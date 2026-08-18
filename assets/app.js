@@ -45,16 +45,19 @@ const MENU = {
   ],
 };
 
-const BANDEJAS = [
-  "Ceviche de pescado",
-  "Lasagña de carne o pollo",
-  "Arroz con pollo",
-  "Avena Bircher",
-  "Torta de pescado",
-  "Bandeja de empanadas de verde",
+/* A su medida — adaptación sin recargo (nunca lenguaje médico) */
+const MEDIDA = ["Keto", "Baja en azúcar", "Fit", "Sin lácteos"];
+
+/* Semana Viva — jugos del combo semanal */
+const JUGOS = [
+  "Jugo de naranjilla",
+  "Jugo de naranja natural",
+  "Jugo de zanahoria y naranja",
+  "Jamaica",
+  "Colada de avena",
 ];
 
-/* ── Combos sugeridos (armados con platos del menú de arriba) ─ */
+/* Combos sugeridos (armados con platos del menú de arriba) */
 const PRESETS = [
   {
     nombre: "Dulce y suave",
@@ -73,7 +76,7 @@ const PRESETS = [
     postre: "Torta de zanahoria",
   },
   {
-    nombre: "Fresco manabita",
+    nombre: "Fresco manaba",
     detalle: "Ceviche y torta de pescado",
     principales: ["Ceviche", "Torta de pescado"],
     bebida: "Jugo de naranjilla",
@@ -90,7 +93,7 @@ const PRESETS = [
   },
 ];
 
-/* ── Ocasiones (cada una abre un mensaje distinto) ─────────── */
+/* Ocasiones (cada una abre un mensaje distinto) */
 const OCASIONES = [
   ["Cumpleaños", "🎂", "Es un cumpleaños"],
   ["Un gracias", "🤍", "Quiero agradecerle a alguien"],
@@ -106,6 +109,7 @@ const LABELS = {
   bebida:      { titulo: "Bebida",             emoji: "🥤" },
   complemento: { titulo: "Complemento",        emoji: "🧺" },
   postre:      { titulo: "Postre",             emoji: "🍰" },
+  medida:      { titulo: "A su medida",        emoji: "⚖️" },
 };
 
 const $  = (s, r = document) => r.querySelector(s);
@@ -151,7 +155,7 @@ function wireNav() {
   addEventListener("keydown", (e) => e.key === "Escape" && setOpen(false));
 }
 
-/* ── Render: opciones del builder + bandejas ──────────────── */
+/* ── Render: builder, medida, presets, ocasiones, jugos ───── */
 function renderMenu() {
   Object.entries(MENU).forEach(([group, items]) => {
     const host = $(`[data-opts="${group}"]`);
@@ -168,8 +172,15 @@ function renderMenu() {
       .join("");
   });
 
-  const trays = $("#trayList");
-  if (trays) trays.innerHTML = BANDEJAS.map((t) => `<li>${t}</li>`).join("");
+  const medidaHost = $('[data-opts="medida"]');
+  if (medidaHost) {
+    medidaHost.innerHTML = MEDIDA.map(
+      (m, i) => `<label class="opt">
+        <input type="checkbox" name="medida" id="medida-${i}" value="${m}">
+        <span>${m}</span>
+      </label>`
+    ).join("");
+  }
 
   const presets = $("#presetRow");
   if (presets) {
@@ -191,6 +202,20 @@ function renderMenu() {
         </a>`
     ).join("");
   }
+
+  const juices = $("#juiceList");
+  if (juices) {
+    juices.innerHTML = JUGOS.map(
+      (j, i) => `<div class="juice" data-juice="${i}">
+        <span class="juice__name">${j}</span>
+        <div class="juice__ctrl">
+          <button type="button" class="juice__btn" data-dir="-1" aria-label="Quitar ${j}">−</button>
+          <span class="juice__n" id="jn-${i}">0</span>
+          <button type="button" class="juice__btn" data-dir="1" aria-label="Sumar ${j}">+</button>
+        </div>
+      </div>`
+    ).join("");
+  }
 }
 
 /* Aplica un combo sugerido al armador */
@@ -198,10 +223,9 @@ function applyPreset(i) {
   const p = PRESETS[i];
   if (!p) return;
 
-  $$('input[name="principales"]').forEach((el) => (el.checked = false));
-  $$('input[name="principales"]').forEach((el) => (el.disabled = false));
   $$('input[name="principales"]').forEach((el) => {
-    if (p.principales.includes(el.value)) el.checked = true;
+    el.disabled = false;
+    el.checked = p.principales.includes(el.value);
   });
   ["bebida", "complemento", "postre"].forEach((g) => {
     $$(`input[name="${g}"]`).forEach((el) => (el.checked = el.value === p[g]));
@@ -239,16 +263,16 @@ function prettyDate(iso) {
   });
 }
 
-/* ── Estado del pedido ────────────────────────────────────── */
+/* ── Estado del pedido (Box Sorpresa) ─────────────────────── */
 function readOrder() {
-  const pick = (g) =>
-    $$(`input[name="${g}"]:checked`).map((i) => i.value);
+  const pick = (g) => $$(`input[name="${g}"]:checked`).map((i) => i.value);
 
   return {
     principales: pick("principales"),
     bebida: pick("bebida"),
     complemento: pick("complemento"),
     postre: pick("postre"),
+    medida: pick("medida"),
     qty: Math.max(1, parseInt($("#fQty").value, 10) || 1),
     date: $("#fDate").value,
     name: $("#fName").value.trim(),
@@ -260,7 +284,7 @@ function readOrder() {
 }
 
 function orderText(o) {
-  const L = ["Hola ANAYA 👋 Quiero armar mi box:", ""];
+  const L = ["Hola ANAYA 👋 Quiero mi Box Sorpresa:", ""];
 
   for (const g of ["principales", "bebida", "complemento", "postre"]) {
     if (!o[g].length) continue;
@@ -272,13 +296,14 @@ function orderText(o) {
       L.push(`${emoji} ${titulo}: ${o[g][0]}`);
     }
   }
+  if (o.medida.length) L.push(`⚖️ A su medida: ${o.medida.join(", ")}`);
 
   L.push("");
   L.push(`📦 Cantidad: ${o.qty} ${o.qty === 1 ? "box" : "boxes"}`);
   if (o.date) L.push(`📅 Fecha deseada: ${prettyDate(o.date)}`);
   L.push(`🚚 Entrega: ${o.delivery}`);
   if (o.gift) {
-    L.push(`🎁 Es un regalo${o.giftMsg ? " — tarjeta:" : " (con tarjeta)"}`);
+    L.push(`🎁 Es sorpresa${o.giftMsg ? " — tarjeta:" : " (con tarjeta a mano)"}`);
     if (o.giftMsg) L.push(`   "${o.giftMsg}"`);
   }
   if (o.notes) L.push(`📝 Notas: ${o.notes}`);
@@ -318,11 +343,10 @@ function update() {
   limitPrincipales();
   const o = readOrder();
 
-  // lista del resumen
+  // lista del resumen (la categoría se rotula solo en el primero del grupo)
   const list = $("#sumList");
   const rows = [];
   for (const g of ["principales", "bebida", "complemento", "postre"]) {
-    // la categoría se rotula solo en el primero del grupo
     o[g].forEach((v, i) =>
       rows.push(
         `<li><div>${
@@ -331,16 +355,20 @@ function update() {
       )
     );
   }
+  if (o.medida.length)
+    rows.push(
+      `<li><div><span class="summary__cat">A su medida</span>${o.medida.join(" · ")}</div></li>`
+    );
   list.innerHTML = rows.length
     ? rows.join("")
-    : `<li class="summary__empty">Empieza eligiendo tus platos principales.</li>`;
+    : `<li class="summary__empty">Empieza eligiendo los platos principales.</li>`;
 
   // metadatos
   const meta = [];
   meta.push(`${o.qty} ${o.qty === 1 ? "box" : "boxes"}`);
   if (o.date) meta.push(prettyDate(o.date));
   meta.push(o.delivery);
-  if (o.gift) meta.push("Con tarjeta de regalo");
+  if (o.gift) meta.push("Con tarjeta escrita a mano");
   $("#sumMeta").innerHTML = meta.map((m) => `<div>${m}</div>`).join("");
 
   // estado del botón
@@ -359,7 +387,7 @@ function update() {
   $("#sbSend").textContent = ok ? "Enviar pedido" : "Completa tu box";
 }
 
-/* ── Envío ────────────────────────────────────────────────── */
+/* ── Envío (Box Sorpresa) ─────────────────────────────────── */
 function send() {
   const o = readOrder();
   if (!isComplete(o)) {
@@ -422,6 +450,73 @@ function wireBuilder() {
   update();
 }
 
+/* ── Semana Viva (5 jugos, con repetición) ────────────────── */
+const juiceState = JUGOS.map(() => 0);
+const juiceTotal = () => juiceState.reduce((a, b) => a + b, 0);
+
+function juiceText() {
+  const L = ["Hola ANAYA 👋 Quiero mi Semana Viva (combo semanal de jugos):", ""];
+  JUGOS.forEach((j, i) => {
+    if (juiceState[i] > 0) L.push(`🧃 ${juiceState[i]}× ${j}`);
+  });
+  L.push("");
+  L.push("📦 5 botellas: 3 el lunes y 2 el jueves");
+  return L.join("\n");
+}
+
+function updateJuices() {
+  const total = juiceTotal();
+  JUGOS.forEach((_, i) => {
+    const n = $(`#jn-${i}`);
+    if (n) n.textContent = juiceState[i];
+    const card = $(`[data-juice="${i}"]`);
+    if (card) card.classList.toggle("is-on", juiceState[i] > 0);
+    const plus = $(`[data-juice="${i}"] [data-dir="1"]`);
+    if (plus) plus.disabled = total >= 5;
+    const minus = $(`[data-juice="${i}"] [data-dir="-1"]`);
+    if (minus) minus.disabled = juiceState[i] === 0;
+  });
+
+  $("#juiceCount").textContent = `${total} de 5 botellas`;
+
+  const sum = $("#juiceSum");
+  const items = [];
+  JUGOS.forEach((j, i) => {
+    if (juiceState[i] > 0) items.push(`<li><div>${juiceState[i]}× ${j}</div></li>`);
+  });
+  sum.innerHTML = items.length
+    ? items.join("")
+    : `<li class="summary__empty">Elige tus 5 botellas.</li>`;
+
+  const ok = total === 5;
+  $("#juiceSend").disabled = !ok;
+  $("#juiceLabel").textContent = ok
+    ? "Pedir mi semana"
+    : `Te faltan ${5 - total} ${5 - total === 1 ? "botella" : "botellas"}`;
+}
+
+function wireJuices() {
+  const host = $("#juiceList");
+  if (!host) return;
+  host.addEventListener("click", (e) => {
+    const btn = e.target.closest(".juice__btn");
+    if (!btn) return;
+    const card = btn.closest("[data-juice]");
+    const i = Number(card.dataset.juice);
+    const dir = Number(btn.dataset.dir);
+    const next = juiceState[i] + dir;
+    if (next < 0) return;
+    if (dir > 0 && juiceTotal() >= 5) return;
+    juiceState[i] = next;
+    updateJuices();
+  });
+  $("#juiceSend").addEventListener("click", () => {
+    if (juiceTotal() !== 5) return;
+    window.open(contactURL(juiceText()), "_blank", "noopener");
+  });
+  updateJuices();
+}
+
 /* ── Datos estructurados (SEO) ────────────────────────────── */
 function injectJSONLD() {
   const menuSection = (name, items) => ({
@@ -434,11 +529,11 @@ function injectJSONLD() {
     "@context": "https://schema.org",
     "@type": "FoodEstablishment",
     name: "ANAYA",
-    alternateName: "ANAYA · Brunch box & más",
+    alternateName: "ANAYA · El desayuno sorpresa que sabe a casa",
     description:
-      "Comida casera a domicilio en Manta, Ecuador. Brunch boxes personalizables, bandejas para reuniones y cajas de regalo.",
+      "Cocina de casa por encargo en Manta, Ecuador. Box sorpresa personalizada con tarjeta escrita a mano, combo semanal de jugos naturales, bandejas manabas y empanadas por docena. Todo se cocina la misma mañana de la entrega.",
     slogan: "Llevamos la cocina de casa hasta tu mesa",
-    servesCuisine: ["Ecuatoriana", "Brunch", "Casera"],
+    servesCuisine: ["Ecuatoriana", "Manabita", "Desayunos", "Casera"],
     address: {
       "@type": "PostalAddress",
       addressLocality: "Manta",
@@ -455,7 +550,14 @@ function injectJSONLD() {
         menuSection("Bebidas", MENU.bebida),
         menuSection("Complementos", MENU.complemento),
         menuSection("Postres", MENU.postre),
-        menuSection("Bandejas para reuniones", BANDEJAS),
+        menuSection("Semana Viva — jugos", JUGOS),
+        menuSection("Para compartir", [
+          "La Mesa Manabita (bandeja familiar)",
+          "Empanadas de verde por docena",
+          "Empanadas de maíz por docena",
+          "Box Oficina",
+          "Amanecer Manabita (box de bienvenida)",
+        ]),
       ],
     },
   };
@@ -488,6 +590,7 @@ document.addEventListener("DOMContentLoaded", () => {
   wireNav();
   wireDate();
   wireBuilder();
+  wireJuices();
   injectJSONLD();
   const y = $("#year");
   if (y) y.textContent = new Date().getFullYear();
