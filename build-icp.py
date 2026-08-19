@@ -146,7 +146,7 @@ def pagina_html(slug, p, otras):
       {ICO_WA}Pedir por WhatsApp</a>
     <button class="burger" aria-expanded="false" aria-controls="mnav" aria-label="Abrir men\u00fa"><span></span><span></span><span></span></button>
   </div>
-  <nav class="mnav" id="mnav" aria-label="Menú móvil" hidden>
+  <nav class="mnav" id="mnav" aria-label="Menú del celular" hidden>
     <button class="mnav__acc" id="mnavAcc" aria-expanded="false" aria-controls="mnavPanel">
       <span>Para quién es</span>
       <svg class="mnav__chev" width="13" height="9" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5l5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
