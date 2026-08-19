@@ -51,6 +51,17 @@
     addEventListener("keydown", (e) => e.key === "Escape" && abrir(false));
   }
 
+
+  /* ── Acordeón "Para quién es" dentro del menú móvil ────── */
+  const acc = $("#mnavAcc"), panel = $("#mnavPanel");
+  if (acc && panel) {
+    acc.addEventListener("click", () => {
+      const abierto = acc.getAttribute("aria-expanded") === "true";
+      acc.setAttribute("aria-expanded", String(!abierto));
+      panel.hidden = abierto;
+    });
+  }
+
   /* ── Tarjetas clicables por completo ───────────────────── */
   $$(".card, .share__card").forEach((card) => {
     const link = $("a[href], a[data-wa]", card);

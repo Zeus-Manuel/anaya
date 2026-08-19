@@ -85,21 +85,25 @@
     <button class="burger" aria-expanded="false" aria-controls="mnav" aria-label="Abrir menú"><span></span><span></span><span></span></button>
   </div>
   <nav class="mnav" id="mnav" aria-label="Menú móvil" hidden>
-    <p class="mnav__group">Para quién es</p>
-    <p class="mnav__group">Para regalar</p>
-    <a class="mnav__sub" href="../regalo-sorpresa/">Sorprender a mi pareja o a mi mejor amiga</a>
-    <a class="mnav__sub" href="../desde-el-exterior/">Vivo fuera y mi familia está en Manta</a>
-    <a class="mnav__sub" href="../regalos-para-tu-equipo/">Regalarle a mi equipo o a mis clientes</a>
-    <p class="mnav__group">Para tu semana</p>
-    <a class="mnav__sub" href="../semana-sin-cocinar/">Salgo temprano y llego tarde</a>
-    <a class="mnav__sub" href="../comida-fit/">Entreno y quiero comer acorde</a>
-    <a class="mnav__sub" href="../baja-en-azucar/">Cuido el azúcar o como keto</a>
-    <p class="mnav__group">Para compartir</p>
-    <a class="mnav__sub" href="../bandeja-familiar/">Tengo reunión en casa</a>
-    <a class="mnav__sub" href="../desayuno-de-oficina/">Me toca el desayuno de la reunión</a>
-    <a class="mnav__sub" href="../huespedes-airbnb/">Recibo huéspedes</a>
-    <a class="mnav__sub" href="../">Ver todos los casos</a>
-    <p class="mnav__group">El menú</p>
+    <button class="mnav__acc" id="mnavAcc" aria-expanded="false" aria-controls="mnavPanel">
+      <span>Para quién es</span>
+      <svg class="mnav__chev" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5l5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="mnav__panel" id="mnavPanel" hidden>
+        <p class="mnav__group">Para regalar</p>
+        <a class="mnav__sub" href="../regalo-sorpresa/">Sorprender a mi pareja o a mi mejor amiga</a>
+        <a class="mnav__sub" href="../desde-el-exterior/">Vivo fuera y mi familia está en Manta</a>
+        <a class="mnav__sub" href="../regalos-para-tu-equipo/">Regalarle a mi equipo o a mis clientes</a>
+        <p class="mnav__group">Para tu semana</p>
+        <a class="mnav__sub" href="../semana-sin-cocinar/">Salgo temprano y llego tarde</a>
+        <a class="mnav__sub" href="../comida-fit/">Entreno y quiero comer acorde</a>
+        <a class="mnav__sub" href="../baja-en-azucar/">Cuido el azúcar o como keto</a>
+        <p class="mnav__group">Para compartir</p>
+        <a class="mnav__sub" href="../bandeja-familiar/">Tengo reunión en casa</a>
+        <a class="mnav__sub" href="../desayuno-de-oficina/">Me toca el desayuno de la reunión</a>
+        <a class="mnav__sub" href="../huespedes-airbnb/">Recibo huéspedes</a>
+        <a class="mnav__sub mnav__all" href="../">Ver todos los casos →</a>
+    </div>
     <a href="../../#sorpresa">Arma tu box</a>
     <a href="../../#semana">Tu semana</a>
     <a href="../../#compartir">Para compartir</a>

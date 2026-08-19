@@ -880,3 +880,17 @@ p{ margin:0 0 .7rem; text-wrap:pretty; }
 }
 .mnav__group:first-child{ margin-top:.2rem; }
 .mnav__sub{ padding-left:.9rem !important; font-size:var(--fs-btn) !important; }
+
+/* ── Acordeón del menú móvil ─────────────────────────────── */
+.mnav__acc{
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+  width:100%; padding:.9rem .2rem;
+  background:none; border:0; border-bottom:1px solid var(--linea);
+  font-family:var(--sans); font-size:1rem; font-weight:600;
+  color:var(--terracota); cursor:pointer; text-align:left;
+}
+.mnav__chev{ width:13px; height:9px; flex:none; transition:transform .25s var(--ease); }
+.mnav__acc[aria-expanded="true"] .mnav__chev{ transform:rotate(180deg); }
+.mnav__panel{ display:grid; gap:.1rem; padding:.4rem 0 .6rem; }
+.mnav__panel[hidden]{ display:none; }
+.mnav__all{ color:var(--terracota) !important; font-weight:600 !important; }
