@@ -33,7 +33,7 @@ const MENU = {
     "Jugo de zanahoria y naranja",
     "Jamaica",
     "Colada de avena",
-    "Chocolate caliente artesanal",
+    "Chocolate caliente",
   ],
   complemento: ["Frutas frescas", "Frutos secos", "Queso"],
   postre: [
@@ -63,7 +63,7 @@ const PRESETS = [
     nombre: "Dulce y suave",
     detalle: "Pancakes, waffles y chocolate caliente",
     principales: ["Pancakes de guineo con avena", "Waffles con miel y fruta"],
-    bebida: "Chocolate caliente artesanal",
+    bebida: "Chocolate caliente",
     complemento: "Frutas frescas",
     postre: "Tres leches",
   },
