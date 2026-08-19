@@ -87,6 +87,7 @@ def pagina_html(slug, p, otras):
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Montserrat:ital,wght@0,400;0,500;0,600;1,400&display=swap" />
 <link rel="stylesheet" href="../../assets/styles.css" />
 <link rel="stylesheet" href="../../assets/icp.css" />
+<script src="../../assets/nav.js" defer></script>
 
 <script type="application/ld+json">{faq_ld}</script>
 <script type="application/ld+json">{breadcrumb_ld}</script>
@@ -104,15 +105,69 @@ def pagina_html(slug, p, otras):
       <span class="brand__word">ANAYA</span>
     </a>
     <nav class="nav__links" aria-label="Principal">
-      <a href="../">Tu caso</a>
-      <a href="../../#sorpresa">Box sorpresa</a>
+      <div class="nav__item nav__item--sub">
+        <button class="nav__toggle" aria-expanded="false" aria-controls="submenu">Para quién es <svg class="nav__chev" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5l5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="subnav" id="submenu" hidden>
+          <div class="subnav__in">
+            <div class="subnav__col">
+              <h3>Para regalar</h3>
+              <ul>
+              <li><a href="../regalo-sorpresa/">Sorprender a mi pareja o a mi mejor amiga</a></li>
+              <li><a href="../desde-el-exterior/">Vivo fuera y mi familia está en Manta</a></li>
+              <li><a href="../regalos-para-tu-equipo/">Regalarle a mi equipo o a mis clientes</a></li>
+              </ul>
+            </div>
+            <div class="subnav__col">
+              <h3>Para tu semana</h3>
+              <ul>
+              <li><a href="../semana-sin-cocinar/">Salgo temprano y llego tarde</a></li>
+              <li><a href="../comida-fit/">Entreno y quiero comer acorde</a></li>
+              <li><a href="../baja-en-azucar/">Cuido el azúcar o como keto</a></li>
+              </ul>
+            </div>
+            <div class="subnav__col">
+              <h3>Para compartir</h3>
+              <ul>
+              <li><a href="../bandeja-familiar/">Tengo reunión en casa</a></li>
+              <li><a href="../desayuno-de-oficina/">Me toca el desayuno de la reunión</a></li>
+              <li><a href="../huespedes-airbnb/">Recibo huéspedes</a></li>
+              </ul>
+            </div>
+          </div>
+          <a class="subnav__all" href="../">Ver todos los casos →</a>
+        </div>
+      </div>
+      <a href="../../#sorpresa">Arma tu box</a>
       <a href="../../#semana">Tu semana</a>
       <a href="../../#compartir">Para compartir</a>
       <a href="../../#faq">Preguntas</a>
     </nav>
     <a class="btn btn--wa nav__cta" href="{wa_url(cierre["wa"])}" target="_blank" rel="noopener">
       {ICO_WA}Pedir por WhatsApp</a>
+    <button class="burger" aria-expanded="false" aria-controls="mnav" aria-label="Abrir men\u00fa"><span></span><span></span><span></span></button>
   </div>
+  <nav class="mnav" id="mnav" aria-label="Menú móvil" hidden>
+    <p class="mnav__group">Para quién es</p>
+    <p class="mnav__group">Para regalar</p>
+    <a class="mnav__sub" href="../regalo-sorpresa/">Sorprender a mi pareja o a mi mejor amiga</a>
+    <a class="mnav__sub" href="../desde-el-exterior/">Vivo fuera y mi familia está en Manta</a>
+    <a class="mnav__sub" href="../regalos-para-tu-equipo/">Regalarle a mi equipo o a mis clientes</a>
+    <p class="mnav__group">Para tu semana</p>
+    <a class="mnav__sub" href="../semana-sin-cocinar/">Salgo temprano y llego tarde</a>
+    <a class="mnav__sub" href="../comida-fit/">Entreno y quiero comer acorde</a>
+    <a class="mnav__sub" href="../baja-en-azucar/">Cuido el azúcar o como keto</a>
+    <p class="mnav__group">Para compartir</p>
+    <a class="mnav__sub" href="../bandeja-familiar/">Tengo reunión en casa</a>
+    <a class="mnav__sub" href="../desayuno-de-oficina/">Me toca el desayuno de la reunión</a>
+    <a class="mnav__sub" href="../huespedes-airbnb/">Recibo huéspedes</a>
+    <a class="mnav__sub" href="../">Ver todos los casos</a>
+    <p class="mnav__group">El menú</p>
+    <a href="../../#sorpresa">Arma tu box</a>
+    <a href="../../#semana">Tu semana</a>
+    <a href="../../#compartir">Para compartir</a>
+    <a href="../../#faq">Preguntas</a>
+    <a class="mnav__wa" href="{wa_url(cierre["wa"])}" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+  </nav>
 </header>
 
 <main>

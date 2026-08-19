@@ -25,6 +25,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Montserrat:ital,wght@0,400;0,500;0,600;1,400&display=swap" />
 <link rel="stylesheet" href="../../assets/styles.css" />
 <link rel="stylesheet" href="../../assets/icp.css" />
+<script src="../../assets/nav.js" defer></script>
 
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Por qué tengo que pedir con 2 días de anticipación?", "acceptedAnswer": {"@type": "Answer", "text": "Porque ese box todavía no existe. Esos 2 días son para comprar el verde, el pescado y la fruta y cocinar todo la mañana de la entrega. Si te lo pudiéramos mandar hoy mismo sería porque ya estaba hecho desde antes, guardado. Y eso no es cocina de casa."}}, {"@type": "Question", "name": "Estoy pagando algo que no voy a ver. ¿Cómo sé que llegó bien?", "acceptedAnswer": {"@type": "Answer", "text": "El box se arma contigo por WhatsApp, plato por plato. Antes de que salga de la cocina te mandamos la foto de la caja lista y tú la ves primero que ellos. Después coordinamos la entrega directo con tu familia en Manta y te avisamos cuando ya está entregado."}}, {"@type": "Question", "name": "¿Cómo pago si vivo fuera del país?", "acceptedAnswer": {"@type": "Answer", "text": "Con Zelle, PayPal o transferencia local, lo que te quede más fácil. Nos ponemos de acuerdo por WhatsApp y te confirmamos apenas entra. No necesitas que nadie en Manta te pague nada por adelantado."}}, {"@type": "Question", "name": "Mi mamá cuida el azúcar. ¿Igual le puedo mandar postre?", "acceptedAnswer": {"@type": "Answer", "text": "Claro que sí. Le va torta de zanahoria o torta de guineo fit sin azúcar añadida, fruta fresca y la bebida sin endulzar. Tú nos dices cómo come ella y el box se arma así. Nadie tiene que quedarse mirando el postre de los demás."}}, {"@type": "Question", "name": "No sé la dirección exacta y no quiero dañar la sorpresa.", "acceptedAnswer": {"@type": "Answer", "text": "Nos das el nombre y el número de alguien de confianza allá, tu ñaño, una vecina, quien sea, y coordinamos con esa persona. Tus papás solo ven llegar la caja. Si quieren armarlo entre hermanos, también se puede, el pedido entra a un solo nombre."}}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "ANAYA", "item": "https://zeus-manuel.github.io/anaya/"}, {"@type": "ListItem", "position": 2, "name": "Estás lejos y quieres que sientan que estás", "item": "https://zeus-manuel.github.io/anaya/para/desde-el-exterior/"}]}</script>
@@ -42,15 +43,69 @@
       <span class="brand__word">ANAYA</span>
     </a>
     <nav class="nav__links" aria-label="Principal">
-      <a href="../">Tu caso</a>
-      <a href="../../#sorpresa">Box sorpresa</a>
+      <div class="nav__item nav__item--sub">
+        <button class="nav__toggle" aria-expanded="false" aria-controls="submenu">Para quién es <svg class="nav__chev" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5l5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="subnav" id="submenu" hidden>
+          <div class="subnav__in">
+            <div class="subnav__col">
+              <h3>Para regalar</h3>
+              <ul>
+              <li><a href="../regalo-sorpresa/">Sorprender a mi pareja o a mi mejor amiga</a></li>
+              <li><a href="../desde-el-exterior/">Vivo fuera y mi familia está en Manta</a></li>
+              <li><a href="../regalos-para-tu-equipo/">Regalarle a mi equipo o a mis clientes</a></li>
+              </ul>
+            </div>
+            <div class="subnav__col">
+              <h3>Para tu semana</h3>
+              <ul>
+              <li><a href="../semana-sin-cocinar/">Salgo temprano y llego tarde</a></li>
+              <li><a href="../comida-fit/">Entreno y quiero comer acorde</a></li>
+              <li><a href="../baja-en-azucar/">Cuido el azúcar o como keto</a></li>
+              </ul>
+            </div>
+            <div class="subnav__col">
+              <h3>Para compartir</h3>
+              <ul>
+              <li><a href="../bandeja-familiar/">Tengo reunión en casa</a></li>
+              <li><a href="../desayuno-de-oficina/">Me toca el desayuno de la reunión</a></li>
+              <li><a href="../huespedes-airbnb/">Recibo huéspedes</a></li>
+              </ul>
+            </div>
+          </div>
+          <a class="subnav__all" href="../">Ver todos los casos →</a>
+        </div>
+      </div>
+      <a href="../../#sorpresa">Arma tu box</a>
       <a href="../../#semana">Tu semana</a>
       <a href="../../#compartir">Para compartir</a>
       <a href="../../#faq">Preguntas</a>
     </nav>
     <a class="btn btn--wa nav__cta" href="https://wa.me/593963181898?text=Hola%20ANAYA%2C%20DESDE%20LEJOS.%20Vivo%20en%20___%20y%20quiero%20mandarle%20un%20box%20a%20mi%20___%20en%20Manta%20para%20el%20___.%20%C2%BFMe%20ayudas%20a%20armarlo%3F" target="_blank" rel="noopener">
       <svg class="ico-wa" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2A9.9 9.9 0 0 0 2.1 11.9c0 1.75.46 3.46 1.34 4.97L2 22l5.28-1.38a9.9 9.9 0 0 0 4.76 1.21h.01a9.9 9.9 0 0 0 9.94-9.9A9.9 9.9 0 0 0 12.04 2Zm5.8 14.06c-.25.69-1.45 1.32-2 1.36-.51.04-1.16.06-1.87-.12a16.9 16.9 0 0 1-1.7-.63c-2.99-1.29-4.94-4.3-5.09-4.5-.15-.2-1.22-1.62-1.22-3.1 0-1.47.77-2.2 1.05-2.5.27-.3.6-.37.8-.37h.57c.19 0 .43-.03.67.51.25.6.85 2.07.92 2.22.08.15.13.33.03.53-.1.2-.15.32-.3.5s-.31.39-.44.53c-.15.15-.3.31-.13.6.17.3.76 1.25 1.63 2.03 1.12 1 2.06 1.3 2.36 1.45.3.15.47.13.64-.08.17-.2.73-.85.93-1.15.2-.3.39-.25.66-.15.27.1 1.72.81 2.02.96.3.15.5.22.57.35.07.13.07.74-.18 1.43Z"/></svg>Pedir por WhatsApp</a>
+    <button class="burger" aria-expanded="false" aria-controls="mnav" aria-label="Abrir menú"><span></span><span></span><span></span></button>
   </div>
+  <nav class="mnav" id="mnav" aria-label="Menú móvil" hidden>
+    <p class="mnav__group">Para quién es</p>
+    <p class="mnav__group">Para regalar</p>
+    <a class="mnav__sub" href="../regalo-sorpresa/">Sorprender a mi pareja o a mi mejor amiga</a>
+    <a class="mnav__sub" href="../desde-el-exterior/">Vivo fuera y mi familia está en Manta</a>
+    <a class="mnav__sub" href="../regalos-para-tu-equipo/">Regalarle a mi equipo o a mis clientes</a>
+    <p class="mnav__group">Para tu semana</p>
+    <a class="mnav__sub" href="../semana-sin-cocinar/">Salgo temprano y llego tarde</a>
+    <a class="mnav__sub" href="../comida-fit/">Entreno y quiero comer acorde</a>
+    <a class="mnav__sub" href="../baja-en-azucar/">Cuido el azúcar o como keto</a>
+    <p class="mnav__group">Para compartir</p>
+    <a class="mnav__sub" href="../bandeja-familiar/">Tengo reunión en casa</a>
+    <a class="mnav__sub" href="../desayuno-de-oficina/">Me toca el desayuno de la reunión</a>
+    <a class="mnav__sub" href="../huespedes-airbnb/">Recibo huéspedes</a>
+    <a class="mnav__sub" href="../">Ver todos los casos</a>
+    <p class="mnav__group">El menú</p>
+    <a href="../../#sorpresa">Arma tu box</a>
+    <a href="../../#semana">Tu semana</a>
+    <a href="../../#compartir">Para compartir</a>
+    <a href="../../#faq">Preguntas</a>
+    <a class="mnav__wa" href="https://wa.me/593963181898?text=Hola%20ANAYA%2C%20DESDE%20LEJOS.%20Vivo%20en%20___%20y%20quiero%20mandarle%20un%20box%20a%20mi%20___%20en%20Manta%20para%20el%20___.%20%C2%BFMe%20ayudas%20a%20armarlo%3F" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+  </nav>
 </header>
 
 <main>

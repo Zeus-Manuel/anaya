@@ -139,24 +139,6 @@ function wireContactLinks() {
   });
 }
 
-/* ── Navegación móvil ─────────────────────────────────────── */
-function wireNav() {
-  const burger = $(".burger");
-  const mnav = $("#mnav");
-  if (!burger || !mnav) return;
-
-  const setOpen = (open) => {
-    burger.setAttribute("aria-expanded", String(open));
-    mnav.hidden = !open;
-    burger.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
-  };
-  burger.addEventListener("click", () =>
-    setOpen(burger.getAttribute("aria-expanded") !== "true")
-  );
-  $$("a", mnav).forEach((a) => a.addEventListener("click", () => setOpen(false)));
-  addEventListener("keydown", (e) => e.key === "Escape" && setOpen(false));
-}
-
 /* ── Render: builder, medida, presets, ocasiones, jugos ───── */
 function renderMenu() {
   Object.entries(MENU).forEach(([group, items]) => {
@@ -591,7 +573,6 @@ function injectJSONLD() {
 document.addEventListener("DOMContentLoaded", () => {
   renderMenu();
   wireContactLinks();
-  wireNav();
   wireDate();
   wireBuilder();
   wireJuices();

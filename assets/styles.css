@@ -805,3 +805,58 @@ p{ margin:0 0 .7rem; text-wrap:pretty; }
 .casos__list span{ display:block; font-size:var(--fs-note); font-weight:400; line-height:1.45; color:var(--tinta-2); }
 
 @media (max-width:1000px){ .casos__grid{ grid-template-columns:1fr; gap:1.6rem; } }
+
+/* ── Menú desplegable "Para quién es" ────────────────────── */
+.nav__item{ position:relative; display:flex; align-items:center; }
+.nav__toggle{
+  display:inline-flex; align-items:center; gap:.4rem;
+  padding:.3rem 0; background:none; border:0; cursor:pointer;
+  font-family:var(--sans); font-size:var(--fs-btn); font-weight:600;
+  letter-spacing:.01em; line-height:1.2; color:var(--terracota);
+}
+.nav__toggle:hover{ color:var(--terracota-h); }
+.nav__chev{ width:11px; height:7px; transition:transform .25s var(--ease); }
+.nav__toggle[aria-expanded="true"] .nav__chev{ transform:rotate(180deg); }
+
+.subnav{
+  position:absolute; top:calc(100% + 14px); left:-1.2rem; z-index:120;
+  width:min(680px,86vw);
+  padding:1.5rem 1.6rem 1.1rem;
+  background:var(--papel);
+  border:1px solid var(--linea); border-radius:var(--r-lg);
+  box-shadow:var(--sh-lg);
+}
+.subnav[hidden]{ display:none; }
+.subnav::before{
+  content:""; position:absolute; top:-14px; left:0; right:0; height:14px;
+}
+.subnav__in{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.4rem; }
+.subnav__col h3{
+  font-size:var(--fs-micro); font-weight:600; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--terracota);
+  padding-bottom:.5rem; margin-bottom:.6rem; border-bottom:1px solid var(--linea);
+}
+.subnav__col ul{ list-style:none; margin:0; padding:0; display:grid; gap:.15rem; }
+.subnav__col a{
+  display:block; padding:.5rem .6rem; margin-left:-.6rem;
+  border-radius:9px;
+  font-size:var(--fs-note); font-weight:500; line-height:1.4;
+  color:var(--tinta); text-decoration:none;
+  transition:.18s var(--ease);
+}
+.subnav__col a:hover{ background:var(--arena); color:var(--terracota); }
+.subnav__all{
+  display:inline-block; margin-top:1rem;
+  font-size:var(--fs-note); font-weight:600; color:var(--terracota);
+  text-decoration:none;
+}
+.subnav__all:hover{ text-decoration:underline; text-underline-offset:3px; }
+
+/* menú móvil: grupos */
+.mnav__group{
+  margin:1rem 0 .3rem; padding:0 .2rem;
+  font-size:var(--fs-micro); font-weight:600; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--terracota);
+}
+.mnav__group:first-child{ margin-top:.2rem; }
+.mnav__sub{ padding-left:.9rem !important; font-size:var(--fs-btn) !important; }
