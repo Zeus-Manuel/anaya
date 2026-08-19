@@ -60,6 +60,23 @@ python3 -m http.server 8000
 # abre http://localhost:8000
 ```
 
+## Al cambiar el diseño o los textos
+
+Si tocas `assets/*.css`, `assets/*.js` o las páginas por perfil, corre esto
+antes de publicar:
+
+```bash
+python3 build-icp.py   # regenera las 9 páginas de /para/
+python3 stamp.py       # sella los assets con un hash de contenido
+```
+
+> **Por qué el sello es obligatorio.** GitHub Pages sirve todo con
+> `cache-control: max-age=600`, y el HTML y el CSS se guardan en caché por
+> separado. Sin el sello, quien ya visitó el sitio puede recibir el HTML
+> nuevo con el CSS viejo durante 10 minutos y ver la página rota. Con el
+> hash en la URL (`styles.css?v=613f66bf`), el HTML nuevo apunta a una URL
+> nueva y el navegador está obligado a bajar el CSS nuevo.
+
 ## 3. Publicarlo
 
 Es un sitio estático: sirve cualquier hosting gratuito. Arrastra la carpeta a
