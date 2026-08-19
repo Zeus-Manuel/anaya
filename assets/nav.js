@@ -41,6 +41,8 @@
       burger.setAttribute("aria-expanded", String(v));
       mnav.hidden = !v;
       burger.setAttribute("aria-label", v ? "Cerrar menú" : "Abrir menú");
+      document.body.style.overflow = v ? "hidden" : "";
+      if (v) mnav.scrollTop = 0;
     };
     burger.addEventListener("click", () =>
       abrir(burger.getAttribute("aria-expanded") !== "true")
@@ -48,4 +50,15 @@
     $$("a", mnav).forEach((a) => a.addEventListener("click", () => abrir(false)));
     addEventListener("keydown", (e) => e.key === "Escape" && abrir(false));
   }
+
+  /* ── Tarjetas clicables por completo ───────────────────── */
+  $$(".card, .share__card").forEach((card) => {
+    const link = $("a[href], a[data-wa]", card);
+    if (!link) return;
+    card.style.cursor = "pointer";
+    card.addEventListener("click", (e) => {
+      if (e.target.closest("a")) return;   // el enlace real ya navega
+      link.click();
+    });
+  });
 })();

@@ -112,3 +112,13 @@
   text-decoration:underline; text-underline-offset:3px;
 }
 .icp .casos{ background:var(--papel); }
+
+/* items del hub y de "¿buscabas otra cosa?" con flecha */
+.icp-otras__list a{
+  display:flex; align-items:center; justify-content:space-between; gap:.9rem;
+}
+.icp-otras__list a::after{
+  content:"→"; font-weight:600; color:var(--terracota);
+  transition:transform .2s var(--ease);
+}
+.icp-otras__list a:hover::after{ transform:translateX(4px); }
